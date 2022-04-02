@@ -13,8 +13,12 @@ export interface GameContext {
     entities: Entity[];
 }
 
-export function setupGameContext({ canvas }: { canvas: HTMLCanvasElement }) {
-    window.CTX = {
+export function setupGameContext({
+    canvas,
+}: {
+    canvas: HTMLCanvasElement;
+}): GameContext {
+    const ctx = {
         canvas: { el: canvas, ctx: canvas.getContext("2d")! },
         assets: new Map(),
         resources: {
@@ -22,4 +26,6 @@ export function setupGameContext({ canvas }: { canvas: HTMLCanvasElement }) {
         },
         entities: [],
     };
+    window.CTX = ctx;
+    return ctx;
 }

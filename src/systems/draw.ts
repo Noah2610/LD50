@@ -8,7 +8,18 @@ export function draw(ctx: GameContext) {
         const spriteOpt = entity.getComponent("Sprite");
 
         if (spriteOpt) {
-            // TODO
+            const { image, bounds, spriteSize } = spriteOpt;
+            canvasCtx.drawImage(
+                image,
+                bounds.x,
+                bounds.y,
+                spriteSize.w,
+                spriteSize.h,
+                Pos.x,
+                Pos.y,
+                Size.w,
+                Size.h,
+            );
         } else {
             const colorOpt = entity.getComponent("Color");
             if (colorOpt) {

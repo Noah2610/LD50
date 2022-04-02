@@ -1,4 +1,4 @@
-import { Color, Player, Pos, Size } from "../components";
+import { Color, Player, Pos, Size, Sprite } from "../components";
 import { CONFIG } from "../config";
 import { Entity } from ".";
 
@@ -11,7 +11,8 @@ export function createPlayer(): Entity {
         new Player(),
         new Pos(x, y),
         new Size(w, h),
-        new Color("red"),
+        new Sprite("turret", { spriteIndex: 0, spriteSize: { w: 32, h: 32 } }),
+        // new Color("red"),
     ]);
     return player;
 }

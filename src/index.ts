@@ -5,6 +5,8 @@ import { CONFIG } from "./config";
 import { SYSTEMS } from "./systems";
 import { createEnemy, createPlayer } from "./entities";
 
+import TURRET_SRC from "../assets/turret.png";
+
 function main() {
     setup();
 
@@ -13,10 +15,15 @@ function main() {
 
 function setup() {
     const canvas = expectEl<HTMLCanvasElement>("#game-canvas");
-    setupGameContext({ canvas });
+    const ctx = setupGameContext({ canvas });
+    setupAssets(ctx);
 
     canvas.width = CONFIG.canvas.size.w;
     canvas.height = CONFIG.canvas.size.h;
+}
+
+function setupAssets(ctx: GameContext) {
+    ctx.assets.set("turret", TURRET_SRC);
 }
 
 function startGame() {
