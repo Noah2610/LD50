@@ -1,5 +1,8 @@
 export const CONFIG = {
-    size: { w: 800, h: 800 },
+    canvas: {
+        size: { w: 800, h: 800 },
+        backgroundColor: "#ffffff",
+    },
     player: {
         size: { w: 64, h: 64 },
     },

@@ -18,7 +18,7 @@ export type QueryGenerator<C extends ComponentName> = Generator<
 
 export function* query<C extends ComponentName>(
     ctx: GameContext,
-    ...query: Query<C>[]
+    query: Query<C>[],
 ): QueryGenerator<C> {
     const entities = ctx.entities;
     for (const entity of entities) {

@@ -1,13 +1,17 @@
-import { Player, Pos, Size } from "../components";
+import { Color, Player, Pos, Size } from "../components";
 import { CONFIG } from "../config";
 import { Entity } from ".";
 
 export function createPlayer(): Entity {
-    const size = CONFIG.player.size;
+    const { w, h } = CONFIG.player.size;
+    const x = CONFIG.canvas.size.w / 2 - w / 2;
+    const y = CONFIG.canvas.size.h / 2 - h / 2;
+
     const player = new Entity([
         new Player(),
-        new Pos(0, 0),
-        new Size(size.w, size.h),
+        new Pos(x, y),
+        new Size(w, h),
+        new Color("red"),
     ]);
     return player;
 }
