@@ -1,0 +1,22 @@
+:root {
+    --clr-bg: #111111;
+    --clr-fg: #dddddd;
+    --clr-primary: #8c192c;
+}
+
+body {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-bg);
+    color: var(--clr-fg);
+    font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game {
+}

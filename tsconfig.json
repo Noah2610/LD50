@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "CommonJS",
+        "allowJs": false,
+        "sourceMap": true,
+        "rootDir": "./",
+        "isolatedModules": true,
+
+        "outDir": "./public/build",
+        "noEmit": false,
+
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "downlevelIteration": true,
+        "noUncheckedIndexedAccess": true,
+
+        "moduleResolution": "node",
+        "baseUrl": "./",
+        "esModuleInterop": true,
+
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src"]
+}
