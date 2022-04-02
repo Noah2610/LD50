@@ -5,3 +5,4 @@ export * from "./pos";
 export * from "./size";
 export * from "./speed";
 export * from "./sprite";
+export * from "./velocity";

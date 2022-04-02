@@ -16,4 +16,10 @@ export const CONFIG = {
             speed: 1,
         },
     },
+    controls: {
+        up: "w",
+        down: "s",
+        left: "a",
+        right: "d",
+    },
 } as const;

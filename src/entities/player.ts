@@ -11,7 +11,11 @@ export function createPlayer(): Entity {
         new Player(),
         new Pos(x, y),
         new Size(w, h),
-        new Sprite("turret", { spriteIndex: 0, spriteSize: { w: 32, h: 32 } }),
+        new Sprite("turret", {
+            spriteIndex: 0,
+            spriteSize: { w: 32, h: 32 },
+            imageSize: { w: 128, h: 128 },
+        }),
         // new Color("red"),
     ]);
     return player;

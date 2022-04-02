@@ -4,11 +4,13 @@ export class Keys {
     pressedKeys: Set<string> = new Set();
 
     constructor() {
-        document.addEventListener("keydown", ({ key }) => {
+        document.addEventListener("keydown", (event) => {
+            const key = event.key.toLowerCase();
             this.downKeys.add(key);
             this.pressedKeys.add(key);
         });
-        document.addEventListener("keyup", ({ key }) => {
+        document.addEventListener("keyup", (event) => {
+            const key = event.key.toLowerCase();
             this.upKeys.add(key);
             this.pressedKeys.delete(key);
         });
