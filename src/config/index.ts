@@ -5,6 +5,7 @@ export const CONFIG = {
     },
     player: {
         size: { w: 64, h: 64 },
+        shotSpeed: 1000,
     },
     enemies: {
         Normal: {
@@ -15,6 +16,10 @@ export const CONFIG = {
             size: { w: 64, h: 64 },
             speed: 1,
         },
+    },
+    bullet: {
+        size: { w: 16, h: 16 },
+        speed: 10,
     },
     controls: {
         leftTurret: {

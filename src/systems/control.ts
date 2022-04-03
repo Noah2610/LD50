@@ -5,7 +5,7 @@ import { GameContext } from "../context";
 import { query } from "../query";
 import { Keys } from "../resources";
 
-const FACING_TO_SPRITE_INDEX: { [T in Facing]: number } = {
+export const FACING_TO_SPRITE_INDEX: { [T in Facing]: number } = {
     Up: 0,
     Right: 1,
     Down: 2,

@@ -2,7 +2,7 @@ import "./styles/index.scss";
 import { GameContext, setupGameContext } from "./context";
 import { expectCtx, expectEl } from "./util";
 import { CONFIG } from "./config";
-import { SYSTEMS } from "./systems";
+import { STARTUP_SYSTEMS, SYSTEMS } from "./systems";
 import { createEnemy, createTurret } from "./entities";
 
 import TURRET_SRC from "../assets/turret.png";
@@ -47,11 +47,20 @@ function startGame() {
         window.requestAnimationFrame(runUpdate);
     };
 
-    window.requestAnimationFrame(runUpdate);
+    const runStartupSystems = () => {
+        for (const system of STARTUP_SYSTEMS) {
+            system(ctx);
+        }
+    };
+
+    window.requestAnimationFrame(() => {
+        runStartupSystems();
+        runUpdate();
+    });
 }
 
 function update(ctx: GameContext) {
-    for (const system of Object.values(SYSTEMS)) {
+    for (const system of SYSTEMS) {
         system(ctx);
     }
 }
