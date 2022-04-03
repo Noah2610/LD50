@@ -1,7 +1,9 @@
+import { ValueOf } from "../types";
 import { Facing } from "../components";
-import { CONFIG } from "../config";
+import { Config, CONFIG } from "../config";
 import { GameContext } from "../context";
 import { query } from "../query";
+import { Keys } from "../resources";
 
 const FACING_TO_SPRITE_INDEX: { [T in Facing]: number } = {
     Up: 0,
@@ -16,41 +18,66 @@ const FACING_TO_SPRITE_INDEX: { [T in Facing]: number } = {
 
 export function control(ctx: GameContext) {
     const controls = CONFIG.controls;
-    const keys = ctx.resources.keys;
 
-    const moveUp = keys.isKeyPressed(controls.up);
-    const moveDown = keys.isKeyPressed(controls.down);
-    const moveLeft = keys.isKeyPressed(controls.left);
-    const moveRight = keys.isKeyPressed(controls.right);
+    for (const { entity, Turret, Sprite } of query(ctx, ["Turret", "Sprite"])) {
+        let facing: Facing | null = null;
 
-    let facing: Facing | null = null;
+        switch (Turret.side) {
+            case "Left": {
+                facing = getFacing(ctx, controls.leftTurret);
+                break;
+            }
+            case "Right": {
+                facing = getFacing(ctx, controls.rightTurret);
+                break;
+            }
+        }
 
-    if (moveUp && moveRight) {
-        facing = "UpRight";
-    } else if (moveUp && moveLeft) {
-        facing = "UpLeft";
-    } else if (moveDown && moveRight) {
-        facing = "DownRight";
-    } else if (moveDown && moveLeft) {
-        facing = "DownLeft";
-    } else if (moveUp) {
-        facing = "Up";
-    } else if (moveDown) {
-        facing = "Down";
-    } else if (moveLeft) {
-        facing = "Left";
-    } else if (moveRight) {
-        facing = "Right";
-    }
-
-    if (facing) {
-        for (const { entity, Player, Sprite } of query(ctx, [
-            "Player",
-            "Sprite",
-        ])) {
-            Player.facing = facing;
+        if (facing) {
+            Turret.facing = facing;
             const spriteIndex = FACING_TO_SPRITE_INDEX[facing];
             Sprite.setSpriteIndex(spriteIndex);
         }
     }
+}
+
+function isPressed(
+    keys: Keys,
+    key: string | string[] | readonly string[],
+): boolean {
+    return typeof key === "string"
+        ? keys.isKeyPressed(key)
+        : key.some((k) => keys.isKeyPressed(k));
+}
+
+function getFacing(
+    ctx: GameContext,
+    controls: ValueOf<Config["controls"]>,
+): Facing | null {
+    const keys = ctx.resources.keys;
+
+    const moveUp = isPressed(keys, controls.up);
+    const moveDown = isPressed(keys, controls.down);
+    const moveLeft = isPressed(keys, controls.left);
+    const moveRight = isPressed(keys, controls.right);
+
+    if (moveUp && moveRight) {
+        return "UpRight";
+    } else if (moveUp && moveLeft) {
+        return "UpLeft";
+    } else if (moveDown && moveRight) {
+        return "DownRight";
+    } else if (moveDown && moveLeft) {
+        return "DownLeft";
+    } else if (moveUp) {
+        return "Up";
+    } else if (moveDown) {
+        return "Down";
+    } else if (moveLeft) {
+        return "Left";
+    } else if (moveRight) {
+        return "Right";
+    }
+
+    return null;
 }

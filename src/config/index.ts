@@ -7,19 +7,29 @@ export const CONFIG = {
         size: { w: 64, h: 64 },
     },
     enemies: {
-        normal: {
+        Normal: {
             size: { w: 64, h: 64 },
             speed: 3,
         },
-        elite: {
+        Elite: {
             size: { w: 64, h: 64 },
             speed: 1,
         },
     },
     controls: {
-        up: "w",
-        down: "s",
-        left: "a",
-        right: "d",
+        leftTurret: {
+            up: "w",
+            down: "s",
+            left: "a",
+            right: "d",
+        },
+        rightTurret: {
+            up: ["arrowup", "k"],
+            down: ["arrowdown", "j"],
+            left: ["arrowleft", "h"],
+            right: ["arrowright", "l"],
+        },
     },
 } as const;
+
+export type Config = typeof CONFIG;

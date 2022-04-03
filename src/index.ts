@@ -3,7 +3,7 @@ import { GameContext, setupGameContext } from "./context";
 import { expectCtx, expectEl } from "./util";
 import { CONFIG } from "./config";
 import { SYSTEMS } from "./systems";
-import { createEnemy, createPlayer } from "./entities";
+import { createEnemy, createTurret } from "./entities";
 
 import TURRET_SRC from "../assets/turret.png";
 
@@ -30,9 +30,10 @@ function startGame() {
     const ctx = expectCtx();
 
     ctx.entities = [
-        createPlayer(),
-        createEnemy("normal"),
-        createEnemy("elite"),
+        createTurret("Left"),
+        createTurret("Right"),
+        createEnemy("Normal"),
+        createEnemy("Elite"),
     ];
 
     const runUpdate = () => {

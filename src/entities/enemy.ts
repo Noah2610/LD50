@@ -2,7 +2,7 @@ import { Enemy, Pos, Size, Speed } from "../components";
 import { CONFIG } from "../config";
 import { Entity } from ".";
 
-export type EnemyType = "normal" | "elite";
+export type EnemyType = "Normal" | "Elite";
 
 export function createEnemy(type: EnemyType): Entity {
     const { size, speed } = CONFIG.enemies[type];

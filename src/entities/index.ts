@@ -1,6 +1,6 @@
 import { Component, ComponentName, ComponentOfName } from "../components";
 export * from "./enemy";
-export * from "./player";
+export * from "./turret";
 
 export class Entity {
     public id: number;

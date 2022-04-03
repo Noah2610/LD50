@@ -27,3 +27,10 @@ export function expectAsset(name: string): string {
     }
     return asset;
 }
+
+export function expectResource<T extends keyof GameContext["resources"]>(
+    name: T,
+): GameContext["resources"][T] {
+    const ctx = expectCtx();
+    return ctx.resources[name];
+}

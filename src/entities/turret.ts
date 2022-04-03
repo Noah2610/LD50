@@ -1,14 +1,15 @@
-import { Color, Player, Pos, Size, Sprite } from "../components";
+import { Turret, TurretSide, Pos, Size, Sprite } from "../components";
 import { CONFIG } from "../config";
 import { Entity } from ".";
 
-export function createPlayer(): Entity {
+export function createTurret(side: TurretSide): Entity {
     const { w, h } = CONFIG.player.size;
-    const x = CONFIG.canvas.size.w / 2 - w / 2;
+    const offset = side === "Left" ? -w / 2 : w / 2;
+    const x = CONFIG.canvas.size.w / 2 - w / 2 + offset;
     const y = CONFIG.canvas.size.h / 2 - h / 2;
 
-    const player = new Entity([
-        new Player(),
+    const turret = new Entity([
+        new Turret(side),
         new Pos(x, y),
         new Size(w, h),
         new Sprite("turret", {
@@ -16,7 +17,6 @@ export function createPlayer(): Entity {
             spriteSize: { w: 32, h: 32 },
             imageSize: { w: 128, h: 128 },
         }),
-        // new Color("red"),
     ]);
-    return player;
+    return turret;
 }
