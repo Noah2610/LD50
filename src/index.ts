@@ -7,6 +7,7 @@ import { createEnemy, createTurret } from "./entities";
 
 import TURRET_SRC from "../assets/turret.png";
 import BULLET_SRC from "../assets/bullet.png";
+import ENEMY_SRC from "../assets/enemy.png";
 
 function main() {
     setup();
@@ -26,6 +27,7 @@ function setup() {
 function setupAssets(ctx: GameContext) {
     ctx.assets.set("turret", TURRET_SRC);
     ctx.assets.set("bullet", BULLET_SRC);
+    ctx.assets.set("enemy", ENEMY_SRC);
 }
 
 function startGame() {
