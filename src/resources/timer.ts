@@ -42,4 +42,8 @@ export class Timer {
         this.time = 0;
         this.isFinished = false;
     }
+
+    public setEndTime(endTime: number) {
+        this.endTime = endTime;
+    }
 }

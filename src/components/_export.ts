@@ -1,3 +1,4 @@
+export * from "./animation";
 export * from "./bullet";
 export * from "./color";
 export * from "./enemy";

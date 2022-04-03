@@ -1,4 +1,4 @@
-import { Bullet, Pos, Size, Velocity } from "../components";
+import { Bullet, Pos, Size, Sprite, Velocity } from "../components";
 import { CONFIG } from "../config";
 import { Entity } from ".";
 
@@ -14,5 +14,10 @@ export function createBullet(x: number, y: number, angle: number): Entity {
         new Pos(x, y),
         new Size(size.w, size.h),
         new Velocity(vel),
+        new Sprite("bullet", {
+            spriteIndex: 0,
+            spriteSize: { w: 32, h: 32 },
+            imageSize: { w: 64, h: 64 },
+        }),
     ]);
 }
