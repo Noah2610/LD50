@@ -21,7 +21,11 @@ export class Timer {
 
     public tick() {
         if (this.isFinished) {
-            return;
+            if (this.loop) {
+                this.reset();
+            } else {
+                return;
+            }
         }
 
         const now = Date.now();
@@ -30,11 +34,7 @@ export class Timer {
         this.time += delta;
 
         if (this.time >= this.endTime) {
-            if (this.loop) {
-                this.time = 0;
-            } else {
-                this.isFinished = true;
-            }
+            this.isFinished = true;
         }
     }
 

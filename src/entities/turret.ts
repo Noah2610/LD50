@@ -1,4 +1,4 @@
-import { Turret, TurretSide, Pos, Size, Sprite } from "../components";
+import { Turret, TurretSide, Pos, Size, Sprite, Rotate } from "../components";
 import { CONFIG } from "../config";
 import { Entity } from ".";
 

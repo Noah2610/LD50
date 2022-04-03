@@ -2,6 +2,7 @@ export * from "./bullet";
 export * from "./color";
 export * from "./enemy";
 export * from "./pos";
+export * from "./rotate";
 export * from "./size";
 export * from "./sprite";
 export * from "./turret";

@@ -2,10 +2,18 @@ import { GameContext } from "../context";
 import { query } from "../query";
 
 export function draw(ctx: GameContext) {
-    const canvasCtx = ctx.canvas.ctx;
+    const { el: canvas, ctx: canvasCtx } = ctx.canvas;
 
     for (const { entity, Pos, Size } of query(ctx, ["Pos", "Size"])) {
         const spriteOpt = entity.getComponent("Sprite");
+        const rotateOpt = entity.getComponent("Rotate");
+
+        if (rotateOpt) {
+            canvasCtx.save();
+            canvasCtx.translate(Pos.x + Size.w / 2, Pos.y + Size.h / 2);
+            canvasCtx.rotate((rotateOpt.angle * Math.PI) / 180);
+            canvasCtx.translate(-Pos.x - Size.w / 2, -Pos.y - Size.h / 2);
+        }
 
         if (spriteOpt) {
             const { image, bounds, spriteSize } = spriteOpt;
@@ -26,6 +34,10 @@ export function draw(ctx: GameContext) {
                 canvasCtx.fillStyle = colorOpt.color;
                 canvasCtx.fillRect(Pos.x, Pos.y, Size.w, Size.h);
             }
+        }
+
+        if (rotateOpt) {
+            canvasCtx.restore();
         }
     }
 }

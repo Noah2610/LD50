@@ -1,5 +1,6 @@
 import { query } from "../query";
 import { GameContext } from "../context";
+import { createBullet } from "../entities/bullet";
 
 export function shoot(ctx: GameContext) {
     const timer = ctx.resources.timers.get("shoot");
@@ -45,5 +46,8 @@ export function shoot(ctx: GameContext) {
                 break;
             }
         }
+
+        const bullet = createBullet(x, y, angle);
+        ctx.entities.push(bullet);
     }
 }
