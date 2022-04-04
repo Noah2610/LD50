@@ -73,7 +73,7 @@ export const STARTUP_SYSTEMS: System[] = [
             ctx.resources.time += delta;
             ctx.resources.difficulty =
                 (Math.floor(
-                    ctx.resources.time / CONFIG.game.difficultyIncreaseEveryMs,
+                    ctx.resources.time / CONFIG.game.difficultyIncreaseEveryMs
                 ) +
                     1) *
                 CONFIG.game.difficultyIncrease;

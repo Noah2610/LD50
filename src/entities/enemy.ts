@@ -1,5 +1,6 @@
 import {
     Animation,
+    ContactDamage,
     DespawnOffscreen,
     Enemy,
     Facing,
@@ -99,7 +100,7 @@ function getSpawnLocation(enemySize: { w: number; h: number }): {
 
 export function createEnemy(type: EnemyType): Entity {
     const difficulty = expectCtx().resources.difficulty;
-    const { size, speed, health } = CONFIG.enemies[type];
+    const { size, speed, health, damage } = CONFIG.enemies[type];
     const { x, y, dx, dy } = getSpawnLocation(size);
 
     const enemy = new Entity([
@@ -108,6 +109,7 @@ export function createEnemy(type: EnemyType): Entity {
         new Size(size.w, size.h),
         new Velocity({ x: dx * speed, y: dy * speed }),
         new Health(health * difficulty),
+        new ContactDamage(damage),
         new Sprite("enemy", {
             spriteIndex: 0,
             spriteSize: { w: 32, h: 32 },

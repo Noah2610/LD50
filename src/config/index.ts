@@ -11,18 +11,21 @@ export const CONFIG = {
     },
     player: {
         size: { w: 64, h: 64 },
-        shotSpeed: 500,
+        shotSpeed: 1000,
+        health: 10,
     },
     enemies: {
         Normal: {
             size: { w: 64, h: 64 },
             speed: 3,
             health: 1,
+            damage: 1,
         },
         Elite: {
             size: { w: 64, h: 64 },
             speed: 1,
             health: 10,
+            damage: 10,
         },
     },
     bullet: {

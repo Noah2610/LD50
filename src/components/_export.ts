@@ -1,6 +1,7 @@
 export * from "./animation";
 export * from "./bullet";
 export * from "./color";
+export * from "./contactDamage";
 export * from "./despawnOffscreen";
 export * from "./enemy";
 export * from "./health";

@@ -6,6 +6,7 @@ import {
     Size,
     Sprite,
     Rotate,
+    Health,
 } from "../components";
 import { CONFIG } from "../config";
 import { Entity } from ".";
@@ -25,6 +26,7 @@ export function createTurret(side: TurretSide): Entity {
             spriteSize: { w: 32, h: 32 },
             imageSize: { w: 128, h: 128 },
         }),
+        new Health(CONFIG.player.health),
     ]);
     return turret;
 }

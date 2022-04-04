@@ -7,6 +7,7 @@ export function draw(ctx: GameContext) {
     for (const { entity, Pos, Size } of query(ctx, ["Pos", "Size"])) {
         const spriteOpt = entity.getComponent("Sprite");
         const rotateOpt = entity.getComponent("Rotate");
+        const healthOpt = entity.getComponent("Health");
 
         if (rotateOpt) {
             canvasCtx.save();
@@ -26,7 +27,7 @@ export function draw(ctx: GameContext) {
                 Pos.x,
                 Pos.y,
                 Size.w,
-                Size.h,
+                Size.h
             );
         } else {
             const colorOpt = entity.getComponent("Color");
@@ -34,6 +35,18 @@ export function draw(ctx: GameContext) {
                 canvasCtx.fillStyle = colorOpt.color;
                 canvasCtx.fillRect(Pos.x, Pos.y, Size.w, Size.h);
             }
+        }
+
+        if (healthOpt) {
+            const { health, maxHealth } = healthOpt;
+            const padding = 8;
+            canvasCtx.fillStyle = "red";
+            canvasCtx.fillRect(
+                Pos.x,
+                Pos.y + Size.h + padding,
+                Size.w * (health / maxHealth),
+                padding
+            );
         }
 
         if (rotateOpt) {

@@ -2,7 +2,7 @@ import { GameContext } from "../context";
 
 export function expectEl<T extends Element = HTMLElement>(
     query: string,
-    rootEl?: Element,
+    rootEl?: Element
 ): T {
     const el = (rootEl || document).querySelector<T>(query);
     if (!el) {
@@ -29,7 +29,7 @@ export function expectAsset(name: string): string {
 }
 
 export function expectResource<T extends keyof GameContext["resources"]>(
-    name: T,
+    name: T
 ): GameContext["resources"][T] {
     const ctx = expectCtx();
     return ctx.resources[name];
