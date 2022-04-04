@@ -2,6 +2,7 @@ export * from "./animation";
 export * from "./bullet";
 export * from "./color";
 export * from "./enemy";
+export * from "./health";
 export * from "./pos";
 export * from "./rotate";
 export * from "./size";

@@ -2,6 +2,7 @@ import { animation } from "./animation";
 import { control, FACING_TO_SPRITE_INDEX } from "./control";
 import { draw } from "./draw";
 import { handleBullets } from "./handleBullets";
+import { handleHealth } from "./handleHealth";
 import { killEntities } from "./killEntities";
 import { move } from "./move";
 import { shoot } from "./shoot";
@@ -12,6 +13,7 @@ export {
     animation,
     control,
     draw,
+    handleHealth,
     killEntities,
     move,
     shoot,
@@ -35,6 +37,7 @@ export const SYSTEMS: System[] = [
     spawnEnemies,
     move,
     handleBullets,
+    handleHealth,
     killEntities,
     draw,
 ];

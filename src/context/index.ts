@@ -1,6 +1,6 @@
 import { CONFIG } from "../config";
 import { Entity } from "../entities";
-import { Keys, Timer } from "../resources";
+import { Keys, Stats, Timer } from "../resources";
 
 export interface GameContext {
     canvas: {
@@ -13,6 +13,7 @@ export interface GameContext {
         timers: Map<string, Timer>;
         time: number;
         difficulty: number;
+        stats: Stats;
     };
     entities: Entity[];
 }
@@ -45,6 +46,9 @@ export function setupGameContext({
             ]),
             time: 0,
             difficulty: 1,
+            stats: {
+                kills: 0,
+            },
         },
         entities: [],
     };

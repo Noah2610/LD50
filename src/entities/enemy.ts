@@ -2,6 +2,7 @@ import {
     Animation,
     Enemy,
     Facing,
+    Health,
     Pos,
     Size,
     Sprite,
@@ -101,10 +102,11 @@ export function createEnemy(type: EnemyType): Entity {
     const { x, y, dx, dy } = getSpawnLocation(size);
 
     const enemy = new Entity([
-        new Enemy({ speed, health: health * difficulty }),
+        new Enemy({ speed }),
         new Pos(x, y),
         new Size(size.w, size.h),
         new Velocity({ x: dx * speed, y: dy * speed }),
+        new Health(health * difficulty),
         new Sprite("enemy", {
             spriteIndex: 0,
             spriteSize: { w: 32, h: 32 },
