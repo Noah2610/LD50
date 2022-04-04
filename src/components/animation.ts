@@ -5,12 +5,21 @@ export interface AnimationFrame {
     ms: number;
 }
 
+export interface AnimationOptions {
+    /** Defaults to true */
+    loop?: boolean;
+}
+
 export class Animation {
     public frames: AnimationFrames;
     public index: number;
+    public loop: boolean;
+    public isStopped: boolean;
 
-    constructor(frames: AnimationFrames) {
+    constructor(frames: AnimationFrames, opts?: AnimationOptions) {
         this.frames = frames;
         this.index = 0;
+        this.loop = opts?.loop ?? true;
+        this.isStopped = false;
     }
 }

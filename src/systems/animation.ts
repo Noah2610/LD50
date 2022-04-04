@@ -9,6 +9,8 @@ export function animation(ctx: GameContext) {
         "Animation",
         "Sprite",
     ])) {
+        if (Animation.isStopped) continue;
+
         const frames = Animation.frames;
         if (!frames[0]) continue;
 
@@ -19,7 +21,13 @@ export function animation(ctx: GameContext) {
         const timer = timers.get(timerId)!;
 
         if (timer.isFinished) {
-            Animation.index = (Animation.index + 1) % frames.length;
+            const nextIndex = (Animation.index + 1) % frames.length;
+            if (!Animation.loop && nextIndex === 0) {
+                Animation.isStopped = true;
+                continue;
+            }
+
+            Animation.index = nextIndex;
             const { idx, ms } = frames[Animation.index]!;
             Sprite.setSpriteIndex(idx);
             timer.reset();

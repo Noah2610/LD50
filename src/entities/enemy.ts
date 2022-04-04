@@ -5,6 +5,7 @@ import {
     Enemy,
     Facing,
     Health,
+    KillAfterAnimation,
     Pos,
     Size,
     Sprite,
@@ -15,6 +16,78 @@ import { expectCtx, sample } from "../util";
 import { Entity } from ".";
 
 export type EnemyType = "Normal" | "Elite";
+
+export function createEnemy(type: EnemyType): Entity {
+    const difficulty = expectCtx().resources.difficulty;
+    const { size, speed, health, damage } = CONFIG.enemies[type];
+    const { x, y, dx, dy } = getSpawnLocation(size);
+
+    const enemy = new Entity([
+        new Enemy({ speed }),
+        new Pos(x, y),
+        new Size(size.w, size.h),
+        new Velocity({ x: dx * speed, y: dy * speed }),
+        new Health(health * difficulty),
+        new ContactDamage(damage),
+        new Sprite("enemy", {
+            spriteIndex: 0,
+            spriteSize: { w: 32, h: 32 },
+            imageSize: { w: 128, h: 128 },
+        }),
+        new Animation([
+            {
+                idx: 0,
+                ms: 200,
+            },
+            {
+                idx: 1,
+                ms: 200,
+            },
+            {
+                idx: 2,
+                ms: 200,
+            },
+            {
+                idx: 1,
+                ms: 200,
+            },
+        ]),
+        new DespawnOffscreen(),
+    ]);
+    return enemy;
+}
+
+export function createEnemyDeathAnimation({
+    x,
+    y,
+    w,
+    h,
+}: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+}): Entity {
+    return new Entity([
+        new Pos(x, y),
+        new Size(w, h),
+        new Sprite("enemy", {
+            spriteIndex: 8,
+            spriteSize: { w: 32, h: 32 },
+            imageSize: { w: 128, h: 128 },
+        }),
+        new Animation(
+            [
+                { idx: 8, ms: 100 },
+                { idx: 9, ms: 100 },
+                { idx: 10, ms: 100 },
+                { idx: 11, ms: 500 },
+            ],
+            { loop: false }
+        ),
+        new KillAfterAnimation(),
+    ]);
+}
 
 function getSpawnLocation(enemySize: { w: number; h: number }): {
     x: number;
@@ -96,44 +169,4 @@ function getSpawnLocation(enemySize: { w: number; h: number }): {
                 dy: -1,
             };
     }
-}
-
-export function createEnemy(type: EnemyType): Entity {
-    const difficulty = expectCtx().resources.difficulty;
-    const { size, speed, health, damage } = CONFIG.enemies[type];
-    const { x, y, dx, dy } = getSpawnLocation(size);
-
-    const enemy = new Entity([
-        new Enemy({ speed }),
-        new Pos(x, y),
-        new Size(size.w, size.h),
-        new Velocity({ x: dx * speed, y: dy * speed }),
-        new Health(health * difficulty),
-        new ContactDamage(damage),
-        new Sprite("enemy", {
-            spriteIndex: 0,
-            spriteSize: { w: 32, h: 32 },
-            imageSize: { w: 128, h: 128 },
-        }),
-        new Animation([
-            {
-                idx: 0,
-                ms: 200,
-            },
-            {
-                idx: 1,
-                ms: 200,
-            },
-            {
-                idx: 2,
-                ms: 200,
-            },
-            {
-                idx: 1,
-                ms: 200,
-            },
-        ]),
-        new DespawnOffscreen(),
-    ]);
-    return enemy;
 }

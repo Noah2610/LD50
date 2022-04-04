@@ -4,6 +4,7 @@ import { despawnOffscreen } from "./despawnOffscreen";
 import { draw } from "./draw";
 import { handleBullets } from "./handleBullets";
 import { handleHealth } from "./handleHealth";
+import { killAfterAnimation } from "./killAfterAnimation";
 import { killEntities } from "./killEntities";
 import { move } from "./move";
 import { shoot } from "./shoot";
@@ -18,6 +19,7 @@ export {
     despawnOffscreen,
     draw,
     handleHealth,
+    killAfterAnimation,
     killEntities,
     move,
     shoot,
@@ -39,6 +41,7 @@ export interface System {
 export const SYSTEMS: System[] = [
     tick,
     animation,
+    killAfterAnimation,
     control,
     shoot,
     spawnEnemies,

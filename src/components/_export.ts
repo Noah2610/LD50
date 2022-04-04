@@ -5,6 +5,7 @@ export * from "./contactDamage";
 export * from "./despawnOffscreen";
 export * from "./enemy";
 export * from "./health";
+export * from "./killAfterAnimation";
 export * from "./pos";
 export * from "./rotate";
 export * from "./size";
