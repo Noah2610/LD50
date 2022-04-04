@@ -6,8 +6,10 @@ export const CONFIG = {
     game: {
         spawnEnemiesDelay: 1000,
         spawnEnemiesCount: 2,
+        spawnEliteEnemiesDelay: 30000,
+        spawnEliteEnemiesCount: 1,
         difficultyIncrease: 1,
-        difficultyIncreaseEveryMs: 60000,
+        difficultyIncreaseEveryMs: 30000,
     },
     player: {
         size: { w: 64, h: 64 },

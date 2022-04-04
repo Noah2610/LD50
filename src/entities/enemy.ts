@@ -1,5 +1,6 @@
 import {
     Animation,
+    AnimationFrames,
     ContactDamage,
     DespawnOffscreen,
     Enemy,
@@ -22,6 +23,32 @@ export function createEnemy(type: EnemyType): Entity {
     const { size, speed, health, damage } = CONFIG.enemies[type];
     const { x, y, dx, dy } = getSpawnLocation(size);
 
+    let spriteIndex: number;
+    let animationFrames: AnimationFrames;
+
+    switch (type) {
+        case "Normal": {
+            spriteIndex = 0;
+            animationFrames = [
+                { idx: 0, ms: 200 },
+                { idx: 1, ms: 200 },
+                { idx: 2, ms: 200 },
+                { idx: 1, ms: 200 },
+            ];
+            break;
+        }
+        case "Elite": {
+            spriteIndex = 4;
+            animationFrames = [
+                { idx: 4, ms: 200 },
+                { idx: 6, ms: 200 },
+                { idx: 5, ms: 200 },
+                { idx: 7, ms: 200 },
+            ];
+            break;
+        }
+    }
+
     const enemy = new Entity([
         new Enemy({ speed }),
         new Pos(x, y),
@@ -30,28 +57,11 @@ export function createEnemy(type: EnemyType): Entity {
         new Health(health * difficulty),
         new ContactDamage(damage),
         new Sprite("enemy", {
-            spriteIndex: 0,
+            spriteIndex,
             spriteSize: { w: 32, h: 32 },
             imageSize: { w: 128, h: 128 },
         }),
-        new Animation([
-            {
-                idx: 0,
-                ms: 200,
-            },
-            {
-                idx: 1,
-                ms: 200,
-            },
-            {
-                idx: 2,
-                ms: 200,
-            },
-            {
-                idx: 1,
-                ms: 200,
-            },
-        ]),
+        new Animation(animationFrames),
         new DespawnOffscreen(),
     ]);
     return enemy;
