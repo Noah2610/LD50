@@ -16,6 +16,7 @@ export interface GameContext {
         stats: Stats;
         isRunning: boolean;
         isGameOver: boolean;
+        itemsToSelect: Item[];
     };
     entities: Entity[];
 }
