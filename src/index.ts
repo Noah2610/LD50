@@ -28,6 +28,8 @@ function startGame() {
         window.requestAnimationFrame(runUpdate);
     };
 
+    ctx.resources.isRunning = true;
+
     window.requestAnimationFrame(() => {
         runStartupSystems(ctx);
         runUpdate();
@@ -36,7 +38,9 @@ function startGame() {
 
 function update(ctx: GameContext) {
     for (const system of SYSTEMS) {
-        system(ctx);
+        if (ctx.resources.isRunning || system.alwaysUpdate) {
+            system(ctx);
+        }
     }
 }
 

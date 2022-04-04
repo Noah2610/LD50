@@ -54,3 +54,5 @@ export function draw(ctx: GameContext) {
         }
     }
 }
+
+draw.alwaysUpdate = true;

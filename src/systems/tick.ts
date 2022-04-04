@@ -5,3 +5,5 @@ export function tick(ctx: GameContext) {
         timer.tick();
     }
 }
+
+tick.alwaysUpdate = true;

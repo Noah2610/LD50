@@ -14,7 +14,7 @@ export const CONFIG = {
     player: {
         size: { w: 64, h: 64 },
         shotSpeed: 1000,
-        health: 10,
+        health: 1, //0,
     },
     enemies: {
         Normal: {

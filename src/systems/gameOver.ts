@@ -7,6 +7,7 @@ export function gameOver(ctx: GameContext) {
 
     const isGameOver = query(ctx, ["Turret"]).next().done;
     if (isGameOver) {
+        ctx.resources.isRunning = false;
         ctx.resources.isGameOver = true;
         const gameOverEl = expectEl("#game .game-over");
         gameOverEl.classList.remove("hidden");
