@@ -2,6 +2,7 @@ import { animation } from "./animation";
 import { control, FACING_TO_SPRITE_INDEX } from "./control";
 import { despawnOffscreen } from "./despawnOffscreen";
 import { draw } from "./draw";
+import { gameOver } from "./gameOver";
 import { handleBullets } from "./handleBullets";
 import { handleHealth } from "./handleHealth";
 import { killAfterAnimation } from "./killAfterAnimation";
@@ -18,6 +19,7 @@ export {
     control,
     despawnOffscreen,
     draw,
+    gameOver,
     handleHealth,
     killAfterAnimation,
     killEntities,
@@ -51,6 +53,7 @@ export const SYSTEMS: System[] = [
     takeDamage,
     handleHealth,
     killEntities,
+    gameOver,
     draw,
     updateUi,
 ];
