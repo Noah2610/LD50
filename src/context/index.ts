@@ -14,6 +14,7 @@ export interface GameContext {
         time: number;
         difficulty: number;
         stats: Stats;
+        isGameOver: boolean;
     };
     entities: Entity[];
 }
@@ -28,27 +29,13 @@ export function setupGameContext({
         assets: new Map(),
         resources: {
             keys: new Keys(),
-            timers: new Map([
-                [
-                    "shoot",
-                    new Timer({
-                        endTime: CONFIG.player.shotSpeed,
-                        loop: true,
-                    }),
-                ],
-                [
-                    "spawnEnemies",
-                    new Timer({
-                        endTime: CONFIG.game.spawnEnemiesDelay,
-                        loop: true,
-                    }),
-                ],
-            ]),
+            timers: new Map(),
             time: 0,
             difficulty: 1,
             stats: {
                 kills: 0,
             },
+            isGameOver: false,
         },
         entities: [],
     };

@@ -1,6 +1,8 @@
 import { query } from "../query";
 import { GameContext } from "../context";
 import { createBullet } from "../entities/bullet";
+import { CONFIG } from "../config";
+import { Timer } from "../resources";
 
 const PADDING = 4;
 
@@ -71,3 +73,13 @@ export function shoot(ctx: GameContext) {
         ctx.entities.push(bullet);
     }
 }
+
+shoot.setup = (ctx: GameContext) => {
+    ctx.resources.timers.set(
+        "shoot",
+        new Timer({
+            endTime: CONFIG.player.shotSpeed,
+            loop: true,
+        })
+    );
+};
