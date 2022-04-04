@@ -28,14 +28,8 @@ function startGame() {
         window.requestAnimationFrame(runUpdate);
     };
 
-    const runStartupSystems = () => {
-        for (const system of STARTUP_SYSTEMS) {
-            system(ctx);
-        }
-    };
-
     window.requestAnimationFrame(() => {
-        runStartupSystems();
+        runStartupSystems(ctx);
         runUpdate();
     });
 }
@@ -43,6 +37,17 @@ function startGame() {
 function update(ctx: GameContext) {
     for (const system of SYSTEMS) {
         system(ctx);
+    }
+}
+
+function runStartupSystems(ctx: GameContext) {
+    for (const system of STARTUP_SYSTEMS) {
+        system(ctx);
+    }
+    for (const system of SYSTEMS) {
+        if (system.setup) {
+            system.setup(ctx);
+        }
     }
 }
 

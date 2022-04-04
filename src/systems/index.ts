@@ -10,6 +10,7 @@ import { shoot } from "./shoot";
 import { spawnEnemies } from "./spawnEnemies";
 import { takeDamage } from "./takeDamage";
 import { tick } from "./tick";
+import { updateUi } from "./updateUi";
 
 export {
     animation,
@@ -23,6 +24,7 @@ export {
     spawnEnemies,
     takeDamage,
     tick,
+    updateUi,
 };
 
 import { GameContext } from "../context";
@@ -31,6 +33,7 @@ import { CONFIG } from "../config";
 
 export interface System {
     (ctx: GameContext): void;
+    setup?: (ctx: GameContext) => void;
 }
 
 export const SYSTEMS: System[] = [
@@ -46,6 +49,7 @@ export const SYSTEMS: System[] = [
     handleHealth,
     killEntities,
     draw,
+    updateUi,
 ];
 
 export const STARTUP_SYSTEMS: System[] = [

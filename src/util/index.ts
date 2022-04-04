@@ -38,3 +38,13 @@ export function expectResource<T extends keyof GameContext["resources"]>(
 export function sample<T>(arr: T[] | readonly T[]): T | null {
     return arr[Math.floor(Math.random() * arr.length)] || null;
 }
+
+export function formatMs(ms: number): string {
+    const pad = (n: number) => n.toString().padStart(2, "0");
+
+    let s = Math.floor(ms / 1000);
+    const m = Math.floor(s / 60);
+    s -= m * 60;
+
+    return `${pad(m)}:${pad(s)}`;
+}
