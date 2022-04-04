@@ -38,4 +38,25 @@ body {
         &__time {
         }
     }
+
+    & .game-over {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: var(--clr-primary);
+        text-align: center;
+        font-size: 4rem;
+        font-weight: bold;
+        letter-spacing: 1rem;
+    }
+}
+
+.hidden {
+    display: none !important;
 }
