@@ -11,6 +11,8 @@ export interface GameContext {
     resources: {
         keys: Keys;
         timers: Map<string, Timer>;
+        time: number;
+        difficulty: number;
     };
     entities: Entity[];
 }
@@ -33,7 +35,16 @@ export function setupGameContext({
                         loop: true,
                     }),
                 ],
+                [
+                    "spawnEnemies",
+                    new Timer({
+                        endTime: CONFIG.game.spawnEnemiesDelay,
+                        loop: true,
+                    }),
+                ],
             ]),
+            time: 0,
+            difficulty: 1,
         },
         entities: [],
     };

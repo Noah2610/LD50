@@ -3,6 +3,12 @@ export const CONFIG = {
         size: { w: 800, h: 800 },
         backgroundColor: "#ffffff",
     },
+    game: {
+        spawnEnemiesDelay: 1000,
+        spawnEnemiesCount: 2,
+        difficultyIncrease: 1,
+        difficultyIncreaseEveryMs: 60000,
+    },
     player: {
         size: { w: 64, h: 64 },
         shotSpeed: 500,

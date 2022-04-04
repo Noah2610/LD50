@@ -3,18 +3,28 @@ import { control, FACING_TO_SPRITE_INDEX } from "./control";
 import { draw } from "./draw";
 import { move } from "./move";
 import { shoot } from "./shoot";
+import { spawnEnemies } from "./spawnEnemies";
 import { tick } from "./tick";
 
-export { animation, move, control, draw, shoot, tick };
+export { animation, control, draw, move, shoot, spawnEnemies, tick };
 
 import { GameContext } from "../context";
 import { query } from "../query";
+import { CONFIG } from "../config";
 
 export interface System {
     (ctx: GameContext): void;
 }
 
-export const SYSTEMS: System[] = [tick, animation, control, shoot, move, draw];
+export const SYSTEMS: System[] = [
+    tick,
+    animation,
+    control,
+    shoot,
+    spawnEnemies,
+    move,
+    draw,
+];
 
 export const STARTUP_SYSTEMS: System[] = [
     (ctx: GameContext) => {
@@ -25,5 +35,22 @@ export const STARTUP_SYSTEMS: System[] = [
             const spriteIndex = FACING_TO_SPRITE_INDEX[Turret.facing];
             Sprite.setSpriteIndex(spriteIndex);
         }
+    },
+
+    (ctx: GameContext) => {
+        let lastUpdate = Date.now();
+
+        setInterval(() => {
+            const now = Date.now();
+            const delta = now - lastUpdate;
+            lastUpdate = now;
+            ctx.resources.time += delta;
+            ctx.resources.difficulty =
+                (Math.floor(
+                    ctx.resources.time / CONFIG.game.difficultyIncreaseEveryMs,
+                ) +
+                    1) *
+                CONFIG.game.difficultyIncrease;
+        }, 1000);
     },
 ];

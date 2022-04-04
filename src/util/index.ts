@@ -34,3 +34,7 @@ export function expectResource<T extends keyof GameContext["resources"]>(
     const ctx = expectCtx();
     return ctx.resources[name];
 }
+
+export function sample<T>(arr: T[] | readonly T[]): T | null {
+    return arr[Math.floor(Math.random() * arr.length)] || null;
+}

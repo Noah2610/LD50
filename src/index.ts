@@ -33,12 +33,7 @@ function setupAssets(ctx: GameContext) {
 function startGame() {
     const ctx = expectCtx();
 
-    ctx.entities = [
-        createTurret("Left"),
-        createTurret("Right"),
-        createEnemy("Normal"),
-        createEnemy("Elite"),
-    ];
+    ctx.entities = [createTurret("Left"), createTurret("Right")];
 
     const runUpdate = () => {
         const { size, backgroundColor } = CONFIG.canvas;
