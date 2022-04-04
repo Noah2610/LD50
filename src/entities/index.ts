@@ -5,12 +5,14 @@ export * from "./turret";
 export class Entity {
     public id: number;
     public components: Map<ComponentName, Component>;
+    public isAlive: boolean;
 
     static nextId: number = 0;
 
     constructor(components?: Component[]) {
         this.id = Entity.nextId++;
         this.components = new Map();
+        this.isAlive = true;
         if (components) {
             for (const component of components) {
                 const name = component.constructor.name as ComponentName;
@@ -35,5 +37,9 @@ export class Entity {
             (this.components.get(name) as ComponentOfName<N> | undefined) ||
             null
         );
+    }
+
+    public kill() {
+        this.isAlive = false;
     }
 }

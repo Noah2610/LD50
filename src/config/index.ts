@@ -17,15 +17,18 @@ export const CONFIG = {
         Normal: {
             size: { w: 64, h: 64 },
             speed: 3,
+            health: 1,
         },
         Elite: {
             size: { w: 64, h: 64 },
             speed: 1,
+            health: 10,
         },
     },
     bullet: {
         size: { w: 16, h: 16 },
         speed: 4,
+        damage: 1,
     },
     controls: {
         leftTurret: {

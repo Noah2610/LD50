@@ -1,12 +1,23 @@
 import { animation } from "./animation";
 import { control, FACING_TO_SPRITE_INDEX } from "./control";
 import { draw } from "./draw";
+import { handleBullets } from "./handleBullets";
+import { killEntities } from "./killEntities";
 import { move } from "./move";
 import { shoot } from "./shoot";
 import { spawnEnemies } from "./spawnEnemies";
 import { tick } from "./tick";
 
-export { animation, control, draw, move, shoot, spawnEnemies, tick };
+export {
+    animation,
+    control,
+    draw,
+    killEntities,
+    move,
+    shoot,
+    spawnEnemies,
+    tick,
+};
 
 import { GameContext } from "../context";
 import { query } from "../query";
@@ -23,6 +34,8 @@ export const SYSTEMS: System[] = [
     shoot,
     spawnEnemies,
     move,
+    handleBullets,
+    killEntities,
     draw,
 ];
 

@@ -1,3 +1,11 @@
+export interface BulletProps {
+    damage: number;
+}
+
 export class Bullet {
-    constructor() {}
+    public damage: number;
+
+    constructor({ damage }: BulletProps) {
+        this.damage = damage;
+    }
 }

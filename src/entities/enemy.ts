@@ -8,7 +8,7 @@ import {
     Velocity,
 } from "../components";
 import { CONFIG } from "../config";
-import { sample } from "../util";
+import { expectCtx, sample } from "../util";
 import { Entity } from ".";
 
 export type EnemyType = "Normal" | "Elite";
@@ -96,11 +96,12 @@ function getSpawnLocation(enemySize: { w: number; h: number }): {
 }
 
 export function createEnemy(type: EnemyType): Entity {
-    const { size, speed } = CONFIG.enemies[type];
+    const difficulty = expectCtx().resources.difficulty;
+    const { size, speed, health } = CONFIG.enemies[type];
     const { x, y, dx, dy } = getSpawnLocation(size);
 
     const enemy = new Entity([
-        new Enemy({ speed }),
+        new Enemy({ speed, health: health * difficulty }),
         new Pos(x, y),
         new Size(size.w, size.h),
         new Velocity({ x: dx * speed, y: dy * speed }),
