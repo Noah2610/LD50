@@ -38,9 +38,9 @@ export const CONFIG = {
             right: "d",
         },
         rightTurret: {
-            up: ["arrowup", "k"],
-            down: ["arrowdown", "j"],
-            left: ["arrowleft", "h"],
+            up: ["arrowup", "i"],
+            down: ["arrowdown", "k"],
+            left: ["arrowleft", "j"],
             right: ["arrowright", "l"],
         },
     },
