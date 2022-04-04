@@ -11,3 +11,5 @@ export function killAfterAnimation(ctx: GameContext) {
         }
     }
 }
+
+killAfterAnimation.alwaysUpdate = true;

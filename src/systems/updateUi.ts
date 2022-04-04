@@ -25,3 +25,5 @@ updateUi.setup = (ctx: GameContext) => {
         })
     );
 };
+
+updateUi.alwaysUpdate = true;

@@ -35,3 +35,5 @@ export function animation(ctx: GameContext) {
         }
     }
 }
+
+animation.alwaysUpdate = true;

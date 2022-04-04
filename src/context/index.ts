@@ -14,6 +14,7 @@ export interface GameContext {
         time: number;
         difficulty: number;
         stats: Stats;
+        isRunning: boolean;
         isGameOver: boolean;
     };
     entities: Entity[];
@@ -35,6 +36,7 @@ export function setupGameContext({
             stats: {
                 kills: 0,
             },
+            isRunning: false,
             isGameOver: false,
         },
         entities: [],

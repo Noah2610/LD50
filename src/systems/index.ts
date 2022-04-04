@@ -38,6 +38,7 @@ import { CONFIG } from "../config";
 export interface System {
     (ctx: GameContext): void;
     setup?: (ctx: GameContext) => void;
+    alwaysUpdate?: boolean;
 }
 
 export const SYSTEMS: System[] = [
@@ -73,6 +74,8 @@ export const STARTUP_SYSTEMS: System[] = [
         let lastUpdate = Date.now();
 
         setInterval(() => {
+            if (!ctx.resources.isRunning) return;
+
             const now = Date.now();
             const delta = now - lastUpdate;
             lastUpdate = now;

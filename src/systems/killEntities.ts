@@ -8,3 +8,5 @@ export function killEntities(ctx: GameContext) {
         }
     }
 }
+
+killEntities.alwaysUpdate = true;
