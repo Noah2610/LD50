@@ -1,5 +1,6 @@
 import { animation } from "./animation";
 import { control, FACING_TO_SPRITE_INDEX } from "./control";
+import { despawnOffscreen } from "./despawnOffscreen";
 import { draw } from "./draw";
 import { handleBullets } from "./handleBullets";
 import { handleHealth } from "./handleHealth";
@@ -7,17 +8,20 @@ import { killEntities } from "./killEntities";
 import { move } from "./move";
 import { shoot } from "./shoot";
 import { spawnEnemies } from "./spawnEnemies";
+import { takeDamage } from "./takeDamage";
 import { tick } from "./tick";
 
 export {
     animation,
     control,
+    despawnOffscreen,
     draw,
     handleHealth,
     killEntities,
     move,
     shoot,
     spawnEnemies,
+    takeDamage,
     tick,
 };
 
@@ -36,7 +40,9 @@ export const SYSTEMS: System[] = [
     shoot,
     spawnEnemies,
     move,
+    despawnOffscreen,
     handleBullets,
+    takeDamage,
     handleHealth,
     killEntities,
     draw,

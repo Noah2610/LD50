@@ -1,6 +1,7 @@
 import {
     Animation,
     Bullet,
+    DespawnOffscreen,
     Pos,
     Rotate,
     Size,
@@ -37,5 +38,6 @@ export function createBullet(x: number, y: number, angle: number): Entity {
             { idx: 2, ms: 200 },
             { idx: 3, ms: 200 },
         ]),
+        new DespawnOffscreen(),
     ]);
 }

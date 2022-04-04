@@ -1,5 +1,6 @@
 import {
     Animation,
+    DespawnOffscreen,
     Enemy,
     Facing,
     Health,
@@ -130,6 +131,7 @@ export function createEnemy(type: EnemyType): Entity {
                 ms: 200,
             },
         ]),
+        new DespawnOffscreen(),
     ]);
     return enemy;
 }
