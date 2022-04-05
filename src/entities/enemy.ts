@@ -90,10 +90,13 @@ export function createEnemyDeathAnimation({
         }),
         new Animation(
             [
-                { idx: 8, ms: 100 },
-                { idx: 9, ms: 100 },
-                { idx: 10, ms: 100 },
-                { idx: 11, ms: 500 },
+                { idx: 8, ms: 50 },
+                { idx: 9, ms: 50 },
+                { idx: 10, ms: 50 },
+                { idx: 11, ms: 200 },
+                { idx: 10, ms: 30 },
+                { idx: 9, ms: 30 },
+                { idx: 8, ms: 50 },
             ],
             { loop: false }
         ),
