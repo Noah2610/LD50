@@ -20,7 +20,9 @@ export type EnemyType = "Normal" | "Elite";
 
 export function createEnemy(type: EnemyType): Entity {
     const difficulty = expectCtx().resources.difficulty;
-    const { size, speed, health, damage } = CONFIG.enemies[type];
+    const { size, speed, damage, ...config } = CONFIG.enemies[type];
+    const health =
+        type === "Elite" ? config.health * difficulty : config.health;
     const { x, y, dx, dy } = getSpawnLocation(size);
 
     let spriteIndex: number;
@@ -54,7 +56,7 @@ export function createEnemy(type: EnemyType): Entity {
         new Pos(x, y),
         new Size(size.w, size.h),
         new Velocity({ x: dx * speed, y: dy * speed }),
-        new Health(health * difficulty),
+        new Health(health),
         new ContactDamage(damage),
         new Sprite("enemy", {
             spriteIndex,

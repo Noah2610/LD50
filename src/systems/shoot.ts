@@ -69,7 +69,7 @@ export function shoot(ctx: GameContext) {
             }
         }
 
-        const bullet = createBullet(x, y, angle);
+        const bullet = createBullet({ x, y, angle });
         ctx.entities.push(bullet);
     }
 }

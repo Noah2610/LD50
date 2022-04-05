@@ -70,22 +70,47 @@ export const STARTUP_SYSTEMS: System[] = [
         }
     },
 
-    (ctx: GameContext) => {
-        let lastUpdate = Date.now();
-
-        setInterval(() => {
-            if (!ctx.resources.isRunning) return;
-
-            const now = Date.now();
-            const delta = now - lastUpdate;
-            lastUpdate = now;
-            ctx.resources.time += delta;
-            ctx.resources.difficulty =
-                (Math.floor(
-                    ctx.resources.time / CONFIG.game.difficultyIncreaseEveryMs
-                ) +
-                    1) *
-                CONFIG.game.difficultyIncrease;
-        }, 1000);
-    },
+    scaleDifficulty,
 ];
+
+function scaleDifficulty(ctx: GameContext) {
+    let lastUpdate = Date.now();
+
+    setInterval(() => {
+        if (!ctx.resources.isRunning) return;
+
+        const now = Date.now();
+        const delta = now - lastUpdate;
+        lastUpdate = now;
+        ctx.resources.time += delta;
+
+        const nextDifficulty =
+            (Math.floor(
+                ctx.resources.time / CONFIG.game.difficultyIncreaseEveryMs
+            ) +
+                1) *
+            CONFIG.game.difficultyIncrease;
+
+        if (nextDifficulty !== ctx.resources.difficulty) {
+            ctx.resources.difficulty = nextDifficulty;
+
+            const shootTimer = ctx.resources.timers.get("shoot");
+            if (shootTimer) {
+                shootTimer.setEndTime(
+                    CONFIG.player.shotSpeed / ctx.resources.difficulty
+                );
+            }
+
+            const spawnTimer = ctx.resources.timers.get("spawnEnemies");
+            if (spawnTimer) {
+                const nextDelay = Math.max(
+                    CONFIG.game.spawnEnemiesDelay -
+                        CONFIG.game.spawnEnemiesDelayDecrease *
+                            ctx.resources.difficulty,
+                    CONFIG.game.spawnEnemiesDelayMin
+                );
+                spawnTimer.setEndTime(nextDelay);
+            }
+        }
+    }, 1000);
+}

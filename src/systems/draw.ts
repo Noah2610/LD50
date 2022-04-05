@@ -37,7 +37,7 @@ export function draw(ctx: GameContext) {
             }
         }
 
-        if (healthOpt) {
+        if (healthOpt && healthOpt.maxHealth > 1) {
             const { health, maxHealth } = healthOpt;
             const padding = 8;
             canvasCtx.fillStyle = "red";

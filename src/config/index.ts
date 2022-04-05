@@ -1,33 +1,35 @@
 export const CONFIG = {
     canvas: {
-        size: { w: 800, h: 800 },
+        size: { w: 1000, h: 1000 },
         backgroundColor: "#ffffff",
     },
     game: {
-        spawnEnemiesDelay: 1000,
-        spawnEnemiesCount: 2,
-        spawnEliteEnemiesDelay: 30000,
+        spawnEnemiesDelay: 500,
+        spawnEnemiesDelayDecrease: 10,
+        spawnEnemiesDelayMin: 50,
+        spawnEnemiesCount: 1,
+        spawnEliteEnemiesDelay: 20000,
         spawnEliteEnemiesCount: 1,
         difficultyIncrease: 1,
-        difficultyIncreaseEveryMs: 30000,
+        difficultyIncreaseEveryMs: 20000,
     },
     player: {
         size: { w: 64, h: 64 },
-        shotSpeed: 1000,
+        shotSpeed: 800,
         health: 10,
     },
     enemies: {
         Normal: {
             size: { w: 64, h: 64 },
-            speed: 3,
+            speed: 2,
             health: 1,
             damage: 1,
         },
         Elite: {
             size: { w: 64, h: 64 },
-            speed: 1,
-            health: 10,
-            damage: 10,
+            speed: 0.5,
+            health: 3,
+            damage: 3,
         },
     },
     bullet: {

@@ -12,9 +12,20 @@ import { CONFIG } from "../config";
 import { expectCtx } from "../util";
 import { Entity } from ".";
 
-export function createBullet(x: number, y: number, angle: number): Entity {
+export function createBullet({
+    x,
+    y,
+    angle,
+}: {
+    x: number;
+    y: number;
+    angle: number;
+}): Entity {
     const difficulty = expectCtx().resources.difficulty;
-    const { size, speed, damage } = CONFIG.bullet;
+    const { size, ...config } = CONFIG.bullet;
+    const damage = config.damage; //* difficulty;
+    const speed = config.speed * difficulty;
+
     const radians = (angle * Math.PI) / 180;
     const vel = {
         x: speed * Math.cos(radians),
@@ -22,7 +33,7 @@ export function createBullet(x: number, y: number, angle: number): Entity {
     };
 
     return new Entity([
-        new Bullet({ damage: damage * difficulty }),
+        new Bullet({ damage }),
         new Pos(x - size.w / 2, y - size.h / 2),
         new Size(size.w, size.h),
         new Velocity(vel),
